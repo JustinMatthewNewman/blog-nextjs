@@ -32,7 +32,6 @@ return (
 </ul>
 </div>
 <div className="flex items-center justify-center md:justify-start mt-4 md:mt-0">
-<!-- <Image src="/logo.svg" alt="Logo" width={48} height={48} /> -->
 <p className="text-white ml-2 font-semibold">JmuFood Blog</p>
 </div>
 <div className="text-white text-center md:text-right">
