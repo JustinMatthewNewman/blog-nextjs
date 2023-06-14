@@ -32,8 +32,8 @@ return (
 </ul>
 </div>
 <div className="flex items-center justify-center md:justify-start mt-4 md:mt-0">
-<Image src="/logo.svg" alt="Logo" width={48} height={48} />
-<p className="text-white ml-2 font-semibold">Food Blog</p>
+<!-- <Image src="/logo.svg" alt="Logo" width={48} height={48} /> -->
+<p className="text-white ml-2 font-semibold">JmuFood Blog</p>
 </div>
 <div className="text-white text-center md:text-right">
 <h2 className="text-xl font-bold mb-2">Follow Us</h2>
@@ -74,7 +74,7 @@ Twitter
 <div className="bg-gray-600 h-px mt-6"></div>
 <div className="container mx-auto mt-4 px-4">
 <p className="text-sm text-gray-400 text-center">
-© {new Date().getFullYear()} Food Blog. All rights reserved.
+© {new Date().getFullYear()} JmuFood Blog. All rights reserved.
 </p>
 </div>
 </footer>
