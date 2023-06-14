@@ -1,96 +1,84 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { memo, useEffect, useState } from 'react'
+import { memo } from 'react'
 
-import cover from './cover.png'
-
-export default memo(function IntroTemplate() {
-  const [studioURL, setStudioURL] = useState(null)
-  const [createPostURL, setCreatePostURL] = useState(null)
-  const [isLocalHost, setIsLocalhost] = useState(false)
-
-  const hasEnvFile = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-  const hasRepoEnvVars =
-    process.env.NEXT_PUBLIC_VERCEL_GIT_PROVIDER &&
-    process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_OWNER &&
-    process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_SLUG
-  const repoURL = `https://${process.env.NEXT_PUBLIC_VERCEL_GIT_PROVIDER}.com/${process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_OWNER}/${process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_SLUG}`
-  const removeBlockURL = hasRepoEnvVars
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_GIT_PROVIDER}.com/${process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_OWNER}/${process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_SLUG}/blob/main/README.md#how-can-i-remove-the-next-steps-block-from-my-blog`
-    : `https://github.com/sanity-io/nextjs-blog-cms-sanity-v3#how-can-i-remove-the-next-steps-block-from-my-blog`
-
-  const [hasUTMtags, setHasUTMtags] = useState(false)
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setStudioURL(`${window.location.origin}/studio`)
-      setCreatePostURL(
-        `${window.location.origin}/studio/intent/create/template=post;type=post/`
-      )
-      setIsLocalhost(window.location.hostname === 'localhost')
-      setHasUTMtags(window.location.search.includes('utm'))
-    }
-  }, [])
-
-  if (hasUTMtags || !studioURL) {
-    return
-  }
-
-  return (
-    
-  )
-})
-
-function Box({
-  circleTitle,
-  element,
-}: {
-  circleTitle: string
-  element: JSX.Element
-}) {
-  return (
-    <li className="mt-2 grid grid-flow-col grid-rows-1 place-content-start gap-3">
-      <div className="row-span-3 select-none">
-        <div className="relative flex h-6 w-6 select-none items-center justify-center rounded-full bg-gray-200 p-4 text-center">
-          {circleTitle}
-        </div>
-      </div>
-      {element}
-    </li>
-  )
-}
-
-function BlueLink({ href, text }: { href: string; text: string }) {
-  return (
-    <a
-      href={href}
-      className="text-blue-500 underline hover:text-blue-800"
-      target="_blank"
-      rel="noreferrer"
-    >
-      {text}
-    </a>
-  )
-}
-
-const RemoveBlock = ({ url }) => (
-  <a
-    className="hover:text-blue-800"
-    href={url}
-    target="_blank"
-    rel="noreferrer"
-  >
-    How to remove this block?
-  </a>
+const IntroTemplate = () => {
+return (
+<footer className="bg-gray-800 py-6">
+<div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
+<div className="text-white text-center md:text-left">
+<h2 className="text-xl font-bold mb-2">Explore More</h2>
+<ul className="space-y-2">
+<li>
+<Link href="/recipes">
+<a className="text-gray-300 hover:text-white">Recipes</a>
+</Link>
+</li>
+<li>
+<Link href="/blog">
+<a className="text-gray-300 hover:text-white">Blog</a>
+</Link>
+</li>
+<li>
+<Link href="/about">
+<a className="text-gray-300 hover:text-white">About</a>
+</Link>
+</li>
+<li>
+<Link href="/contact">
+<a className="text-gray-300 hover:text-white">Contact</a>
+</Link>
+</li>
+</ul>
+</div>
+<div className="flex items-center justify-center md:justify-start mt-4 md:mt-0">
+<Image src="/logo.svg" alt="Logo" width={48} height={48} />
+<p className="text-white ml-2 font-semibold">Food Blog</p>
+</div>
+<div className="text-white text-center md:text-right">
+<h2 className="text-xl font-bold mb-2">Follow Us</h2>
+<ul className="space-y-2">
+<li>
+<a
+             href="https://www.instagram.com/foodblog"
+             target="_blank"
+             rel="noreferrer"
+             className="text-gray-300 hover:text-white"
+           >
+Instagram
+</a>
+</li>
+<li>
+<a
+             href="https://www.facebook.com/foodblog"
+             target="_blank"
+             rel="noreferrer"
+             className="text-gray-300 hover:text-white"
+           >
+Facebook
+</a>
+</li>
+<li>
+<a
+             href="https://www.twitter.com/foodblog"
+             target="_blank"
+             rel="noreferrer"
+             className="text-gray-300 hover:text-white"
+           >
+Twitter
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div className="bg-gray-600 h-px mt-6"></div>
+<div className="container mx-auto mt-4 px-4">
+<p className="text-sm text-gray-400 text-center">
+© {new Date().getFullYear()} Food Blog. All rights reserved.
+</p>
+</div>
+</footer>
 )
-
-function getGitProvider() {
-  switch (process.env.NEXT_PUBLIC_VERCEL_GIT_PROVIDER) {
-    case 'gitlab':
-      return 'GitLab'
-    case 'bitbucket':
-      return 'Bitbucket'
-    default:
-      return 'GitHub'
-  }
 }
+
+export default memo(IntroTemplate)
