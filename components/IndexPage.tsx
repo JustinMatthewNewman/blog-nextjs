@@ -8,6 +8,8 @@ import MoreStories from 'components/MoreStories'
 import * as demo from 'lib/demo.data'
 import type { Post, Settings } from 'lib/sanity.queries'
 
+// index page
+
 export interface IndexPageProps {
   preview?: boolean
   loading?: boolean
